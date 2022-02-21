@@ -34,7 +34,6 @@
                 </div>
               </form>
               <v-btn
-                :to="to"
                 outlined
                 block
                 @click="textCheck">
@@ -61,53 +60,26 @@ export default {
     ],
     inputName: "",
     inputMessage: "",
-    to: "",
   }),
-  watch: {
-    inputName(value) {
-      if (value.length !== 0 && this.inputMessage.length !== 0) {
-        if (this.inputMessage.length <= 200) {
-          this.to = "/inspire"
-        }
-        else {
-          this.to = ""
-        }
-      }
-      else {
-        this.to = ""
-      }
-    },
-    inputMessage(value) {
-      if (value.length !== 0 && this.inputName.length !== 0) {
-        if (value.length <= 200) {
-          this.to = "/inspire"
-        }
-        else {
-          this.to = ""
-        }
-      }
-      else {
-        this.to = ""
-      }
-    }
-  },
   methods: {
     textCheck (event){
       if (this.inputName.length === 0 && this.inputMessage.length === 0) {
         alert("NameとMessageを埋めてください。")
-        this.to = ""
       }
       else if (this.inputName.length === 0) {
         alert("Nameを埋めてください。")
-        this.to = ""
       }
       else if (this.inputMessage.length === 0) {
         alert("Messageを埋めてください。")
-        this.to = ""
       }
       else if (this.inputMessage.length >= 200) {
         alert("Messageは200文字以内で入力してください。")
-        this.to = ""
+      }
+      else {
+        this.$router.push({
+          path: "/contactResult",
+          query: { name: this.inputName, message: this.inputMessage},
+        });
       }
     }
   }
