@@ -9,25 +9,23 @@
             </v-col>
           </v-row>
           <v-row class="text-center ma-6">
-            <!-- スマホアプリ -->
-            <v-col class="col-12 col-md-4">
+            <v-col
+            v-for="(item, i) in items"
+            :key=i
+            class="col-12 col-sm-4">
               <v-card style="width: 100%">
-                <p>a</p>
-              </v-card>
-            </v-col>
-            <!-- エニアグラム -->
-            <v-col class="col-12 col-md-4">
-              <v-card style="width: 100%">
-                <p>a</p>
-              </v-card>
-            </v-col>
-            <!-- 美容師フリーランス -->
-            <v-col class="col-12 col-md-4">
-              <v-card style="width: 100%">
-                <p>a</p>
+                <v-img v-bind:src="item.src" v-bind:lazy-src="item.src" />
+                <h1 class="my-3">{{ item.title }}</h1>
               </v-card>
             </v-col>
           </v-row>
+          <v-btn
+            outlined
+            block
+            class="ma-3"
+            to="/workDetail">
+            Work詳細
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -37,33 +35,31 @@
 <script>
 export default {
   data: () => ({
-    
+    items:[
+      /* src を v-bind によって変数バインドさせたい場合は
+          そのままパス文字列が出力されてしまう。
+          回避するために「require()」で囲む
+      */ 
+      {
+        src: require('~/assets/img/pigLeadIcon.png'),
+        title: "PigLead",
+      },
+      {
+        src: require('~/assets/img/enneagramIcon.png'),
+        title: "enneagram",
+      },
+      {
+        src: require('~/assets/img/beautySalonFreelanceIcon.png'),
+        title: "美容師フリーランス名鑑",
+      },
+    ],
   })
 };
 </script>
 
 <style lang="scss">
-$main_color: #283e79;
-
-</style>
-
-<style scoped>
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-/* 
-#users {
-  z-index: 0;
-} */
-
-img {
-  
-  overflow: hidden;
-}
-
 section {
   position: relative;
 }
+
 </style>
