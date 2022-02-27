@@ -13,13 +13,17 @@
               v-for="(item, i) in items"
               :key=i
               class="col-12 col-sm-4">
-              <v-card style="width: 100%">
-                <v-img v-bind:src="item.src" v-bind:lazy-src="item.src" />
-                <h1 class="my-3">{{ item.title }}</h1>
-                <v-card-text>
-                  <p class="itemText text-left">{{ item.text }}</p>
-                </v-card-text>
-              </v-card>
+              <slide-in-card
+                :src="item.src"
+                :title="item.title"
+                :text="item.text"
+                btn1=""
+                btn2=""
+                url1=""
+                url2=""
+                :text-show="true"
+                :btn-show="false"
+                ></slide-in-card>
             </v-col>
           </v-row>
         </v-col>
@@ -29,7 +33,11 @@
 </template>
 
 <script>
+import SlideInCard from "./SlideInCard";
 export default {
+  components: {
+    SlideInCard,
+  },
   data: () => ({
     items:[
       /* src を v-bind によって変数バインドさせたい場合は
@@ -55,16 +63,12 @@ export default {
               UI、UXに富んだデザインを提案します。`,
       },
     ],
-  })
+  }),
 };
 </script>
 
 <style lang="scss">
 section {
   position: relative;
-}
-
-.itemText {
-  white-space: pre-line;
 }
 </style>
