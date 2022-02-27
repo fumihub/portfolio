@@ -88,10 +88,6 @@ export default {
 </script>
 
 <style lang="scss">
-
-</style>
-
-<style scoped>
 .profile-icon {
   border-radius: 50%;
   height: 400px;

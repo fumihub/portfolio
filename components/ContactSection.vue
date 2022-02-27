@@ -88,12 +88,6 @@ export default {
 
 
 <style lang="scss">
-$main_color: #283e79;
-
-</style>
-
-<style scoped>
-
 section {
   position: relative;
 }

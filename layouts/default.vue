@@ -40,8 +40,6 @@
             <v-col  align="end" justify="end" class="8">
               <v-spacer />
               <v-app-bar-nav-icon @click.stop="rightDrawer = !rightDrawer" />
-              <v-btn icon @click.stop="miniVariant = !miniVariant">
-              </v-btn>
             </v-col>
           </v-row>
         </v-col>
@@ -60,7 +58,7 @@ export default {
   name: 'DefaultLayout',
   data() {
     return {
-      mini: true,
+      mini: false,
       clipped: false,
       drawer: false,
       fixed: false,
@@ -75,6 +73,11 @@ export default {
           title: 'ContactResult',
           to: '/contactResult',
         },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'WorkDetail',
+          to: '/workDetail',
+        },
       ],
       miniVariant: false,
       right: true,
@@ -86,10 +89,6 @@ export default {
 </script>
 
 <style lang="scss">
-
-</style>
-
-<style scoped>
 .mylogo {
   height: 50px;
   width: 100px;
