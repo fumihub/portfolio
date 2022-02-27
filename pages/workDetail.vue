@@ -13,26 +13,18 @@
       :key=i
       class="text-center ma-6">
         <v-col align="center" justify="center">
-          <v-card class="workCard">
-            <v-img v-bind:src="item.src" v-bind:lazy-src="item.src" />
-            <h1 class="my-3">{{ item.title }}</h1>
-            <v-card-text>
-              <p class="text-left" v-html="htmlText(item.text)"></p>
-            </v-card-text>
-            <v-btn
-              outlined
-              class="ma-3"
-              :href="item.githubURL">
-              GitHub
-            </v-btn>
-            <v-btn
-              outlined
-              class="ma-3"
-              :href="item.workURL"
-              >
-              work
-            </v-btn>
-          </v-card>
+          <slide-in-card
+            :src="item.src"
+            :title="item.title"
+            :text="item.text"
+            btn1="GitHub"
+            btn2="work"
+            :url1="item.githubURL"
+            :url2="item.workURL"
+            :text-show="true"
+            :btn-show="true"
+            class="workCard"
+            ></slide-in-card>
         </v-col>
       </v-row>
     </v-col>
@@ -40,8 +32,12 @@
 </template>
 
 <script>
+import SlideInCard from "../components/SlideInCard";
 export default {
   name: 'WorkDetail',
+  components: {
+    SlideInCard,
+  },
   data() {
     return {
       items:[
@@ -86,20 +82,6 @@ export default {
       ],
     }
   },
-  created() {
-    
-  },
-  mounted() {
-
-  },
-  methods:{
-    htmlText(msg){
-      console.log(msg)
-      if( msg !== "" ){
-        return msg.replace(/\r?\n/g, '<br>')
-      }
-    }
-  }
 }
 </script>
 
