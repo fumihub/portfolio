@@ -1,7 +1,7 @@
 <template>
   <v-card class="cover-slide">
     <div class="card">
-      <v-img v-bind:src="src" v-bind:lazy-src="src" />
+      <v-img v-bind:src="src" v-bind:lazy-src="src" @load="load()"  />
       <h1 class="my-3">{{ title }}</h1>
       <v-card-text
         v-show="textShow">
@@ -65,61 +65,40 @@ export default {
     },
   },
   data: () => ({
-    
   }),
   mounted() {
-    class ScrollObserver {
-      constructor(els, cb, options) {
-          this.els = document.querySelectorAll(els);
-          const defaultOptions = {
-              root: null,
-              rootMargin: "0px",
-              threshold: 0,
-              once: true
-          };
-          this.cb = cb;
-          this.options = Object.assign(defaultOptions, options);
-          this.once = this.options.once;
-          this._init();
-      }
-
-      _init() {
-        const callback = function (entries, observer) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.cb(entry.target, true);
-                    if(this.once) {
-                        observer.unobserve(entry.target);
-                    }
-                } else {
-                    this.cb(entry.target, false);
-                }
-            });
-        };
-
-        this.io = new IntersectionObserver(callback.bind(this), this.options);
-        
-        this.els.forEach(el => this.io.observe(el));
-      }
-
-      destory() {
-          this.io.disconnect();
-      }
-    }
-
-    const cb = function (el, isIntersecting) {
-        if(isIntersecting) {
-            el.classList.add('inview');
-        }
-    }
-
-    const so = new ScrollObserver('.cover-slide', cb);
-    console.log(so)
   },
   methods:{
+    load () {
+      // 画像がダウンロードされてからスクロールを監視
+      const els = document.querySelectorAll('.cover-slide');
+    
+      const options = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0,
+        once: true
+      };
+      
+      const cb = function (entries, observer) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('inview');
+            if(options.once) {
+              observer.unobserve(entry.target);
+            }
+          }
+        });
+      };
+
+      // InterSectionObserverをインスタンス化
+      const io = new IntersectionObserver(cb, options);
+      // 「cover-slide」クラスの要素を監視
+      els.forEach(el => io.observe(el));
+    },
     htmlText(msg){
       if( msg !== "" ){
-        return msg.replace(/\r?\n/g, '<br>')
+        return msg.replace(/\r?\n/g, '<br>');
       }
     }
   }

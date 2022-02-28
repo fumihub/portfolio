@@ -39,7 +39,7 @@
             </v-col>
             <v-col  align="end" justify="end" class="8">
               <v-spacer />
-              <v-app-bar-nav-icon @click.stop="rightDrawer = !rightDrawer" />
+              <v-app-bar-nav-icon @click="routeChange()" @click.stop="rightDrawer = !rightDrawer" />
             </v-col>
           </v-row>
         </v-col>
@@ -62,29 +62,52 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/',
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'ContactResult',
-          to: '/contactResult',
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'WorkDetail',
-          to: '/workDetail',
-        },
-      ],
+      items: [],
       miniVariant: false,
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js',
     }
   },
+  methods: {
+    routeChange(){
+      // アイテム配列初期化
+      this.items.splice(0);
+      // 遷移先追加
+      if (this.$route.path === '/') {
+        this.items.push(
+          {
+            icon: 'mdi-animation',
+            title: 'WorkDetail',
+            to: '/workDetail',
+          },
+        );
+      }
+      else if (this.$route.path === '/workDetail') {
+        this.items.push(
+          {
+            icon: 'mdi-home',
+            title: 'Home',
+            to: '/',
+          },
+        );
+      }
+      else if (this.$route.path === '/contactResult') {
+        this.items.push(
+          {
+            icon: 'mdi-home',
+            title: 'Home',
+            to: '/',
+          },
+          {
+            icon: 'mdi-animation',
+            title: 'WorkDetail',
+            to: '/workDetail',
+          },
+        );
+      }
+    }
+  }
 }
 </script>
 
