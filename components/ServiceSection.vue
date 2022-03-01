@@ -8,11 +8,11 @@
               <h1 class="display-3 font-weight-bold">Service</h1>
             </v-col>
           </v-row>
-          <v-row class="text-center ma-6">
+          <v-row class="text-center ma-6 service-row">
             <v-col
               v-for="(item, i) in items"
               :key=i
-              class="col-12 col-sm-4">
+              class="col-12 col-sm-4 service-col">
               <slide-in-card
                 :src="item.src"
                 :title="item.title"
@@ -70,5 +70,14 @@ export default {
 <style lang="scss">
 section {
   position: relative;
+}
+
+// cardのサイズを合わせる
+.service-col {
+  display: flex;
+  align-items: stretch;
+  & side-in-card {
+    display: flex;
+  }
 }
 </style>

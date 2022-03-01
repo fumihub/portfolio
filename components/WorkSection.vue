@@ -12,7 +12,7 @@
             <v-col
             v-for="(item, i) in items"
             :key=i
-            class="col-12 col-sm-4">
+            class="col-12 col-sm-4 work-col">
               <slide-in-card
                 :src="item.src"
                 :title="item.title"
@@ -73,4 +73,12 @@ section {
   position: relative;
 }
 
+// cardのサイズを合わせる
+.work-col {
+  display: flex;
+  align-items: stretch;
+  & side-in-card {
+    display: flex;
+  }
+}
 </style>
