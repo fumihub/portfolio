@@ -1,6 +1,6 @@
 <template>
-  <section id="contact">
-    <v-container fluid>
+  <section align="center" justify="center">
+    <v-container id="contact" fluid>
       <v-row align="center" justify="center">
         <v-col cols="12">
           <v-row class="text-center ma-6">
@@ -88,5 +88,7 @@ export default {
 
 
 <style lang="scss">
-
+#contact {
+  max-width: 1260px;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <section id="about">
-    <v-container fluid>
+  <section align="center" justify="center">
+    <v-container id="about" fluid>
       <v-row align="center" justify="center">
         <v-col cols="12">
           <v-row class="text-center">
@@ -110,6 +110,10 @@ export default {
 </script>
 
 <style lang="scss">
+#about {
+  max-width: 1260px;
+}
+
 .profile-icon {
   border-radius: 50%;
   height: 400px;

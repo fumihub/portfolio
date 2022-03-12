@@ -1,6 +1,6 @@
 <template>
-  <section id="work">
-    <v-container fluid>
+  <section align="center" justify="center">
+    <v-container id="work" fluid>
       <v-row align="center" justify="center">
         <v-col cols="12">
           <v-row class="text-center ma-6">
@@ -69,6 +69,9 @@ export default {
 </script>
 
 <style lang="scss">
+#work {
+  max-width: 1260px;
+}
 // cardのサイズを合わせる
 .work-col {
   display: flex;
