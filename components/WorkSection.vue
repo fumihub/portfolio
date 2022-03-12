@@ -69,10 +69,6 @@ export default {
 </script>
 
 <style lang="scss">
-section {
-  position: relative;
-}
-
 // cardのサイズを合わせる
 .work-col {
   display: flex;

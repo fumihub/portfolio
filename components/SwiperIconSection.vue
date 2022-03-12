@@ -5,7 +5,7 @@
         v-for="(item,i) in items"
         :key="i"
       >
-        <v-img v-bind:src="item.src" v-bind:lazy-src="item.src" class="grey lighten-2" />
+        <v-img :src="item.src" :lazy-src="item.src" class="grey lighten-2" />
       </swiper-slide>
     </swiper>
   </div>
@@ -72,28 +72,27 @@
 </script>
 
 <style lang="scss">
-  .example-3d {
-    width: 100%;
-    height: 400px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
+.example-3d {
+  width: 100%;
+  height: 400px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
 
-  .swiper {
-    height: 100%;
-    width: 100%;
+.swiper {
+  height: 100%;
+  width: 100%;
 
-    .swiper-slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 400px;
-      height: 250px;
-      text-align: center;
-      font-weight: bold;
-      // background-color: #2C8DFB;
-      background-position: center;
-      background-size: cover;
-    }
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 250px;
+    text-align: center;
+    font-weight: bold;
+    background-position: center;
+    background-size: cover;
   }
+}
 </style>

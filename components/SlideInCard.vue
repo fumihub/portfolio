@@ -1,7 +1,7 @@
 <template>
   <v-card class="cover-slide">
     <div class="card">
-      <v-img v-bind:src="src" v-bind:lazy-src="src" @load="load()"  />
+      <v-img :src="src" :lazy-src="src" @load="load()"  />
       <h1 class="my-3">{{ title }}</h1>
       <v-card-text
         v-show="textShow">
