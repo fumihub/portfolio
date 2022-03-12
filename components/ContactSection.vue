@@ -88,7 +88,5 @@ export default {
 
 
 <style lang="scss">
-section {
-  position: relative;
-}
+
 </style>

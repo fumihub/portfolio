@@ -68,16 +68,9 @@ export default {
 </script>
 
 <style lang="scss">
-section {
-  position: relative;
-}
-
 // cardのサイズを合わせる
 .service-col {
   display: flex;
   align-items: stretch;
-  & side-in-card {
-    display: flex;
-  }
 }
 </style>

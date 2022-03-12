@@ -36,20 +36,30 @@
                       </p>
                     </v-col>
                   </v-row>
-                  <p
-                    v-for="(greetText, i) in greetTexts"
-                    :key=i
-                  >
+                  <p class="greetText">
                     {{ greetText }}
                   </p>
                 </v-col>
               </v-row>
             </v-col>
           </v-row>
-          <!-- SNSリンク -->
-          <v-row>
-            <v-col>
-              
+          <!-- SNSアイコン -->
+          <v-row class="mb-5">
+            <v-col cols="12">
+              <v-row>
+                <v-col
+                  v-for="(item, j) in items"
+                  :key="j"
+                  justify="center"
+                  align="center"
+                  class="col-4">
+                  <v-btn
+                    :href="item.href"
+                    plain>
+                    <v-icon>{{ item.icon }}</v-icon>
+                  </v-btn>
+                </v-col>
+              </v-row>
             </v-col>
           </v-row>
         </v-col>
@@ -79,11 +89,23 @@ export default {
         value: "web制作、スマホアプリ開発、デザイン関連",
       }
     ],
-    greetTexts:[
-      "上記事業内容以外にも、オンライン家庭教師として、子供の教育に携わっています。",
-      "ご興味ある方はお気軽に問い合わせください。"
+    greetText: `上記事業内容以外にも、オンライン家庭教師として、子供の教育に携わっています。
+                ご興味ある方はお気軽に問い合わせください。`,
+    items: [
+      {
+        href: "https://www.facebook.com/fumihiro.nishide.9",
+        icon: "mdi-facebook",
+      },
+      {
+        href: "https://twitter.com/coopsuisan",
+        icon: "mdi-twitter",
+      },
+      {
+        href: "https://www.instagram.com/fumihiro_nishide/",
+        icon: "mdi-instagram",
+      },
     ],
-  })
+  }),
 };
 </script>
 
@@ -94,7 +116,7 @@ export default {
   width: 400px;
 }
 
-section {
-  position: relative;
+.greetText {
+  white-space: pre-line;
 }
 </style>

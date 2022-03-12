@@ -40,8 +40,6 @@ export default {
   },
   mounted() {
     const el = document.querySelector('.animation-text');
-    const cl = el.classList
-    console.log(cl)
     const str = el.innerHTML.trim().split("");
     el.innerHTML = str.reduce((acc, curr) => {
         curr = curr.replace(/\s+/, '&nbsp;');
