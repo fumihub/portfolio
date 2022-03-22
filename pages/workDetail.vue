@@ -56,12 +56,11 @@ export default {
                 なぜ、予定がある日には必ずと言っていいほどお金の入出金が伴うのに、2つのアプリで管理を分けているのだろうと考えました。
                 そこで、スケジュールとお金の入出金を1つのアプリで管理でき、予定とお金の入出金が紐づくようにしたいという考えから生まれたのがPigLeadです。
                 PigLeadでは、スケジュール管理と家計簿記入をアプリ内で完結することができます。
-                <span style=font-weight:bold;color:red;>***α版をPlayStoreに公開するための審査中***</span>
                 
                 ■担当範囲
                 アイデアから、UIデザイン、ロジック開発までを担当`,
           githubURL: "https://github.com/fumihub/PigLead",
-          workURL: "",
+          workURL: "https://play.google.com/store/apps/details?id=com.non_name_hero.calenderview",
         },
         {
           src: require('~/assets/img/enneagramIcon.png'),
