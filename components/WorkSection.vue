@@ -5,15 +5,15 @@
         <v-col cols="12">
           <v-row class="text-center ma-6">
             <v-col class="col-12">
-              <h1 class="display-3 font-weight-bold">Work</h1>
+              <h1 class="text-h2 font-weight-bold">Work</h1>
             </v-col>
           </v-row>
           <v-row class="text-center ma-6">
             <v-col
-            v-for="(item, i) in items"
-            :key=i
-            class="col-12 col-sm-4 work-col">
-              <slide-in-card
+              v-for="(item, i) in items"
+              :key="i"
+              class="col-12 col-sm-4 work-col">
+              <SlideInCard
                 :src="item.src"
                 :title="item.title"
                 text=""
@@ -23,11 +23,11 @@
                 url2=""
                 :text-show="false"
                 :btn-show="false"
-                ></slide-in-card>
+              />
             </v-col>
           </v-row>
           <v-btn
-            outlined
+            variant="outlined"
             block
             class="ma-3"
             to="/workDetail">
@@ -39,33 +39,21 @@
   </section>
 </template>
 
-<script>
-import SlideInCard from "./SlideInCard";
-export default {
-  components: {
-    SlideInCard
+<script setup>
+const items = [
+  {
+    src: '/portfolio/img/pigLeadIcon.png',
+    title: "PigLead",
   },
-  data: () => ({
-    items:[
-      /* src を v-bind によって変数バインドさせたい場合は
-          そのままパス文字列が出力されてしまう。
-          回避するために「require()」で囲む
-      */ 
-      {
-        src: require('~/assets/img/pigLeadIcon.png'),
-        title: "PigLead",
-      },
-      {
-        src: require('~/assets/img/enneagramIcon.png'),
-        title: "enneagram",
-      },
-      {
-        src: require('~/assets/img/beautySalonFreelanceIcon.png'),
-        title: "美容師フリーランス名鑑",
-      },
-    ],
-  })
-};
+  {
+    src: '/portfolio/img/enneagramIcon.png',
+    title: "enneagram",
+  },
+  {
+    src: '/portfolio/img/beautySalonFreelanceIcon.png',
+    title: "美容師フリーランス名鑑",
+  },
+]
 </script>
 
 <style lang="scss">

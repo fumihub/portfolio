@@ -3,7 +3,7 @@
     <v-col class="text-center">
       <v-row>
         <v-col>
-          <h1 class="animation-text display-3 font-weight-bold">
+          <h1 class="animation-text text-h2 font-weight-bold">
             Thank You !
           </h1>
         </v-col>
@@ -24,36 +24,35 @@
   </v-row>
 </template>
 
-<script>
-export default {
-  name: 'ContactResultPage',
-  data() {
-    return {
-      name: "",
-      message: ""
-    }
-  },
-  created() {
-    // queryStringsから受け取った値をdataへ
-    this.name = this.$route.query.name;
-    this.message = this.$route.query.message;
-  },
-  mounted() {
-    const el = document.querySelector('.animation-text');
-    const str = el.innerHTML.trim().split("");
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+
+const name = ref("")
+const message = ref("")
+
+// queryStringsから受け取った値をdataへ
+name.value = route.query.name || ""
+message.value = route.query.message || ""
+
+onMounted(() => {
+  const el = document.querySelector('.animation-text')
+  if (el) {
+    const str = el.innerHTML.trim().split("")
     el.innerHTML = str.reduce((acc, curr) => {
-        curr = curr.replace(/\s+/, '&nbsp;');
-        return `${acc}<span data-text="${curr}">${curr}</span>`;
-    }, "");
+      curr = curr.replace(/\s+/, '&nbsp;')
+      return `${acc}<span data-text="${curr}">${curr}</span>`
+    }, "")
   }
-}
+})
 </script>
 
 <style lang="scss">
 .animation-text span {
   position: relative;
   display: inline-block;
-  // margin: 0 -.05em;
   color: white;
 }
 .animation-text span::after {
@@ -69,7 +68,7 @@ export default {
 
 @for $i from 2 through 11 {
   .animation-text span:nth-child(#{$i})::after {
-      animation-delay: $i * 0.1s;
+    animation-delay: $i * 0.1s;
   }
 }
 
