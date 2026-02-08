@@ -5,7 +5,7 @@
         <v-col cols="12">
           <v-row class="text-center ma-6">
             <v-col>
-              <h1 class="display-3 font-weight-bold">Contact</h1>
+              <h1 class="text-h2 font-weight-bold">Contact</h1>
             </v-col>
           </v-row>
           <v-row class="text-center ma-6">
@@ -19,9 +19,8 @@
                     label="Name"
                     :rules="nameRules"
                     hide-details="auto"
-                    outlined
-                  >
-                  </v-text-field>
+                    variant="outlined"
+                  />
                 </div>
                 <div>
                   <v-textarea
@@ -29,15 +28,15 @@
                     counter
                     label="Message"
                     :rules="messageRules"
-                    outlined
-                  ></v-textarea>
+                    variant="outlined"
+                  />
                 </div>
               </form>
               <v-btn
-                outlined
+                variant="outlined"
                 block
                 @click="textCheck">
-                send
+                Send
               </v-btn>
             </v-col>
           </v-row>
@@ -47,45 +46,45 @@
   </section>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-export default {
-  data: () => ({
-    nameRules: [
-      value => !!value || 'Required.',
-    ],
-    messageRules: [
-      value => !!value || 'Required.',
-      value => (value && value.length <= 200) || 'Max 500 characters',
-    ],
-    inputName: "",
-    inputMessage: "",
-  }),
-  methods: {
-    textCheck (event){
-      if (this.inputName.length === 0 && this.inputMessage.length === 0) {
-        alert("NameとMessageを埋めてください。")
-      }
-      else if (this.inputName.length === 0) {
-        alert("Nameを埋めてください。")
-      }
-      else if (this.inputMessage.length === 0) {
-        alert("Messageを埋めてください。")
-      }
-      else if (this.inputMessage.length >= 200) {
-        alert("Messageは200文字以内で入力してください。")
-      }
-      else {
-        this.$router.push({
-          path: "/contactResult",
-          query: { name: this.inputName, message: this.inputMessage},
-        });
-      }
-    }
+const router = useRouter()
+
+const nameRules = [
+  value => !!value || 'Required.',
+]
+
+const messageRules = [
+  value => !!value || 'Required.',
+  value => (value && value.length <= 200) || 'Max 200 characters',
+]
+
+const inputName = ref("")
+const inputMessage = ref("")
+
+const textCheck = () => {
+  if (inputName.value.length === 0 && inputMessage.value.length === 0) {
+    alert("NameとMessageを埋めてください。")
   }
-};
+  else if (inputName.value.length === 0) {
+    alert("Nameを埋めてください。")
+  }
+  else if (inputMessage.value.length === 0) {
+    alert("Messageを埋めてください。")
+  }
+  else if (inputMessage.value.length >= 200) {
+    alert("Messageは200文字以内で入力してください。")
+  }
+  else {
+    router.push({
+      path: "/contactResult",
+      query: { name: inputName.value, message: inputMessage.value },
+    })
+  }
+}
 </script>
-
 
 <style lang="scss">
 #contact {

@@ -1,112 +1,103 @@
 <template>
   <v-card class="cover-slide">
     <div class="card">
-      <v-img :src="src" :lazy-src="src" @load="load()"  />
+      <v-img :src="src" :lazy-src="src" @load="load()" />
       <h1 class="my-3">{{ title }}</h1>
-      <v-card-text
-        v-show="textShow">
+      <v-card-text v-show="textShow">
         <p class="text-left" v-html="htmlText(text)"></p>
       </v-card-text>
       <v-btn
         v-show="btnShow"
-        outlined
+        variant="outlined"
         class="ma-3"
         :href="url1">
         {{ btn1 }}
       </v-btn>
       <v-btn
         v-show="btnShow"
-        outlined
+        variant="outlined"
         class="ma-3"
-        :href="url2"
-        >
+        :href="url2">
         {{ btn2 }}
       </v-btn>
     </div>
   </v-card>
 </template>
 
-<script>
-export default {
-  props:{
-    src: {
-      type: String,
-      required: true
-    },
-    title: {
-      type: String,
-      required: true
-    },
-    text: {
-      type: String,
-      required: true
-    },
-    btn1: {
-      type: String,
-      required: true
-    },
-    btn2: {
-      type: String,
-      required: true
-    },
-    url1: {
-      type: String,
-      required: true
-    },
-    url2: {
-      type: String,
-      required: true
-    },
-    textShow: {
-      type: Boolean,
-    },
-    btnShow: {
-      type: Boolean,
-    },
+<script setup>
+const props = defineProps({
+  src: {
+    type: String,
+    required: true
   },
-  data: () => ({
-  }),
-  mounted() {
+  title: {
+    type: String,
+    required: true
   },
-  methods:{
-    load () {
-      // 画像がダウンロードされてからスクロールを監視
-      const els = document.querySelectorAll('.cover-slide');
-    
-      const options = {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0,
-        once: true
-      };
-      
-      const cb = function (entries, observer) {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('inview');
-            if(options.once) {
-              observer.unobserve(entry.target);
-            }
-          }
-        });
-      };
+  text: {
+    type: String,
+    required: true
+  },
+  btn1: {
+    type: String,
+    required: true
+  },
+  btn2: {
+    type: String,
+    required: true
+  },
+  url1: {
+    type: String,
+    required: true
+  },
+  url2: {
+    type: String,
+    required: true
+  },
+  textShow: {
+    type: Boolean,
+  },
+  btnShow: {
+    type: Boolean,
+  },
+})
 
-      // InterSectionObserverをインスタンス化
-      const io = new IntersectionObserver(cb, options);
-      // 「cover-slide」クラスの要素を監視
-      els.forEach(el => io.observe(el));
-    },
-    htmlText(msg){
-      if( msg !== "" ){
-        return msg.replace(/\r?\n/g, '<br>');
-      }
-    }
+const load = () => {
+  // 画像がダウンロードされてからスクロールを監視
+  const els = document.querySelectorAll('.cover-slide')
+
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0,
+    once: true
   }
-};
+  
+  const cb = function (entries, observer) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('inview')
+        if(options.once) {
+          observer.unobserve(entry.target)
+        }
+      }
+    })
+  }
+
+  // InterSectionObserverをインスタンス化
+  const io = new IntersectionObserver(cb, options)
+  // 「cover-slide」クラスの要素を監視
+  els.forEach(el => io.observe(el))
+}
+
+const htmlText = (msg) => {
+  if (msg !== "") {
+    return msg.replace(/\r?\n/g, '<br>')
+  }
+}
 </script>
 
 <style lang="scss">
-
 .cover-slide {
   position: relative;
   overflow: hidden;
